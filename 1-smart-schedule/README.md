@@ -517,4 +517,7 @@ Proyecto académico desarrollado para la asignatura:
 
 **Análisis de Algoritmos**
 
-Agregar aquí los nombres de los integrantes del equipo.
+**Desarrollado por:**
+- Sergio Esteban Franco Agudelo
+- María Alejandra Rúa Monsalve
+- Sebastián Espinosa Hernández
