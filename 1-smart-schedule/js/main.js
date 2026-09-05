@@ -1,11 +1,24 @@
-import { mostrarActividades } from "./ui.js";
+import {
+    agregarActividad,
+    obtenerActividades,
+    eliminarActividad
+} from "./activities.js";
 
-const actividades = [];
+import { mostrarActividades } from "./ui.js";
 
 const formulario = document.querySelector("#activity-form form");
 const nombreInput = document.querySelector("#activity-name");
 const inicioInput = document.querySelector("#start-time");
 const finInput = document.querySelector("#end-time");
+
+function actualizarLista() {
+    mostrarActividades(obtenerActividades(), manejarEliminacion);
+}
+
+function manejarEliminacion(index) {
+    eliminarActividad(index);
+    actualizarLista();
+}
 
 formulario.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -30,9 +43,11 @@ formulario.addEventListener("submit", (event) => {
         fin
     };
 
-    actividades.push(actividad);
+    agregarActividad(actividad);
 
-    mostrarActividades(actividades);
+    actualizarLista();
 
     formulario.reset();
 });
+
+actualizarLista();
