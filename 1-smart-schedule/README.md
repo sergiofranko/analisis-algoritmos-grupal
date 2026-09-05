@@ -6,6 +6,12 @@ El sistema permite registrar diferentes actividades con una hora de inicio y una
 
 ---
 
+## Enlace al video explicativo
+
+[Ver video explicativo de Smart Schedule](https://youtu.be/95OJlhP54tU)
+
+---
+
 ## Problema
 
 Supongamos que una organización dispone de un recurso limitado, como una sala, una cancha o un espacio de trabajo, y recibe múltiples solicitudes para utilizarlo.
