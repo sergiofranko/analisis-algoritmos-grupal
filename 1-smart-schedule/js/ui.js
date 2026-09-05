@@ -32,10 +32,10 @@ export function mostrarActividades(actividades, onEliminar) {
 }
 
 export function mostrarResultado(actividadesSeleccionadas, actividades) {
-    const selectedContainer = document.querySelector("#selected-activities");
+    const selectedContainer = document.querySelector("#optimized-schedule");
     const discardedContainer = document.querySelector("#discarded-activities");
 
-    selectedContainer.innerHTML = "<h3>Actividades seleccionadas</h3>";
+    selectedContainer.innerHTML = "";
     discardedContainer.innerHTML = "<h3>Actividades descartadas</h3>";
 
     const actividadesDescartadas = actividades.filter(
@@ -43,20 +43,29 @@ export function mostrarResultado(actividadesSeleccionadas, actividades) {
     );
 
     if (actividadesSeleccionadas.length === 0) {
-        selectedContainer.innerHTML += "<p>No hay actividades seleccionadas.</p>";
+        selectedContainer.innerHTML = "<p>No hay actividades seleccionadas.</p>";
     } else {
-        actividadesSeleccionadas.forEach((actividad) => {
-            const elemento = document.createElement("p");
+        const actividadesOrdenadas = [...actividadesSeleccionadas].sort(
+            (a, b) => a.inicio.localeCompare(b.inicio)
+        );
 
-            elemento.textContent =
-                `${actividad.nombre} — ${actividad.inicio} - ${actividad.fin}`;
+        actividadesOrdenadas.forEach((actividad) => {
+            const bloque = document.createElement("div");
 
-            selectedContainer.appendChild(elemento);
+            bloque.classList.add("schedule-block");
+
+            bloque.innerHTML = `
+                <strong>${actividad.nombre}</strong>
+                <span>${actividad.inicio} - ${actividad.fin}</span>
+            `;
+
+            selectedContainer.appendChild(bloque);
         });
     }
 
     if (actividadesDescartadas.length === 0) {
-        discardedContainer.innerHTML += "<p>No hay actividades descartadas.</p>";
+        discardedContainer.innerHTML +=
+            "<p>No hay actividades descartadas.</p>";
     } else {
         actividadesDescartadas.forEach((actividad) => {
             const elemento = document.createElement("p");
@@ -67,4 +76,16 @@ export function mostrarResultado(actividadesSeleccionadas, actividades) {
             discardedContainer.appendChild(elemento);
         });
     }
+
+    mostrarEstadisticas(
+        actividades.length,
+        actividadesSeleccionadas.length,
+        actividadesDescartadas.length
+    );
+}
+
+export function mostrarEstadisticas(total, seleccionadas, descartadas) {
+    document.querySelector("#total-activities").textContent = total;
+    document.querySelector("#selected-count").textContent = seleccionadas;
+    document.querySelector("#discarded-count").textContent = descartadas;
 }

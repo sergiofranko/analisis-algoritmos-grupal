@@ -6,7 +6,8 @@ import {
 
 import {
     mostrarActividades,
-    mostrarResultado
+    mostrarResultado,
+    mostrarEstadisticas
 } from "./ui.js";
 
 import { seleccionarActividades } from "./greedy.js";
@@ -19,6 +20,12 @@ const botonOptimizar = document.querySelector("#optimize-button");
 
 function actualizarLista() {
     mostrarActividades(obtenerActividades(), manejarEliminacion);
+
+    mostrarEstadisticas(
+        obtenerActividades().length,
+        0,
+        0
+    );
 }
 
 function manejarEliminacion(index) {
@@ -58,7 +65,9 @@ formulario.addEventListener("submit", (event) => {
 
 botonOptimizar.addEventListener("click", () => {
     const actividades = obtenerActividades();
-    const actividadesSeleccionadas = seleccionarActividades(actividades);
+
+    const actividadesSeleccionadas =
+        seleccionarActividades(actividades);
 
     mostrarResultado(
         actividadesSeleccionadas,
