@@ -4,12 +4,18 @@ import {
     eliminarActividad
 } from "./activities.js";
 
-import { mostrarActividades } from "./ui.js";
+import {
+    mostrarActividades,
+    mostrarResultado
+} from "./ui.js";
+
+import { seleccionarActividades } from "./greedy.js";
 
 const formulario = document.querySelector("#activity-form form");
 const nombreInput = document.querySelector("#activity-name");
 const inicioInput = document.querySelector("#start-time");
 const finInput = document.querySelector("#end-time");
+const botonOptimizar = document.querySelector("#optimize-button");
 
 function actualizarLista() {
     mostrarActividades(obtenerActividades(), manejarEliminacion);
@@ -48,6 +54,16 @@ formulario.addEventListener("submit", (event) => {
     actualizarLista();
 
     formulario.reset();
+});
+
+botonOptimizar.addEventListener("click", () => {
+    const actividades = obtenerActividades();
+    const actividadesSeleccionadas = seleccionarActividades(actividades);
+
+    mostrarResultado(
+        actividadesSeleccionadas,
+        actividades
+    );
 });
 
 actualizarLista();

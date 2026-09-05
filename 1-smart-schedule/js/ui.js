@@ -30,3 +30,41 @@ export function mostrarActividades(actividades, onEliminar) {
         container.appendChild(elemento);
     });
 }
+
+export function mostrarResultado(actividadesSeleccionadas, actividades) {
+    const selectedContainer = document.querySelector("#selected-activities");
+    const discardedContainer = document.querySelector("#discarded-activities");
+
+    selectedContainer.innerHTML = "<h3>Actividades seleccionadas</h3>";
+    discardedContainer.innerHTML = "<h3>Actividades descartadas</h3>";
+
+    const actividadesDescartadas = actividades.filter(
+        (actividad) => !actividadesSeleccionadas.includes(actividad)
+    );
+
+    if (actividadesSeleccionadas.length === 0) {
+        selectedContainer.innerHTML += "<p>No hay actividades seleccionadas.</p>";
+    } else {
+        actividadesSeleccionadas.forEach((actividad) => {
+            const elemento = document.createElement("p");
+
+            elemento.textContent =
+                `${actividad.nombre} — ${actividad.inicio} - ${actividad.fin}`;
+
+            selectedContainer.appendChild(elemento);
+        });
+    }
+
+    if (actividadesDescartadas.length === 0) {
+        discardedContainer.innerHTML += "<p>No hay actividades descartadas.</p>";
+    } else {
+        actividadesDescartadas.forEach((actividad) => {
+            const elemento = document.createElement("p");
+
+            elemento.textContent =
+                `${actividad.nombre} — ${actividad.inicio} - ${actividad.fin}`;
+
+            discardedContainer.appendChild(elemento);
+        });
+    }
+}
