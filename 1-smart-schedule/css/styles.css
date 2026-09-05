@@ -1,0 +1,200 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #1f2933;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 32px 20px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 1rem;
+}
+
+main {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+form {
+    display: grid;
+    gap: 16px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: 2px solid #2563eb;
+    border-color: #2563eb;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+#activities-container {
+    display: grid;
+    gap: 12px;
+}
+
+#activities-container>div {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
+    background-color: #f8fafc;
+}
+
+#activities-container button {
+    margin-top: 10px;
+    background-color: #dc2626;
+}
+
+#activities-container button:hover {
+    background-color: #b91c1c;
+}
+
+#optimization {
+    text-align: center;
+}
+
+#optimization button {
+    min-width: 220px;
+}
+
+#selected-activities,
+#discarded-activities {
+    margin-top: 20px;
+}
+
+#optimized-schedule {
+    display: grid;
+    gap: 12px;
+}
+
+.schedule-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 16px;
+    border-left: 5px solid #2563eb;
+    border-radius: 6px;
+    background-color: #eff6ff;
+}
+
+.schedule-block strong {
+    font-size: 1.05rem;
+}
+
+.schedule-block span {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#discarded-activities p {
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+#statistics>div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+#statistics p {
+    padding: 16px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #f8fafc;
+}
+
+#statistics span {
+    display: block;
+    margin-top: 6px;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: #64748b;
+}
+
+@media (max-width: 600px) {
+    main {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    .schedule-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+}
+
+#statistics>div {
+    grid-template-columns: 1fr;
+}
