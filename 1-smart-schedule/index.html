@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Schedule</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Smart Schedule</h1>
+        <p>Organizador de actividades</p>
+    </header>
+
+    <main>
+
+        <!-- Formulario de actividades -->
+        <section id="activity-form">
+            <h2>Nueva actividad</h2>
+
+            <form>
+                <div>
+                    <label for="activity-name">Nombre de la actividad</label>
+                    <input
+                        type="text"
+                        id="activity-name"
+                        name="activity-name"
+                        placeholder="Ej. Reunión"
+                    >
+                </div>
+
+                <div>
+                    <label for="start-time">Hora de inicio</label>
+                    <input
+                        type="time"
+                        id="start-time"
+                        name="start-time"
+                    >
+                </div>
+
+                <div>
+                    <label for="end-time">Hora de finalización</label>
+                    <input
+                        type="time"
+                        id="end-time"
+                        name="end-time"
+                    >
+                </div>
+
+                <button type="submit">
+                    Agregar actividad
+                </button>
+            </form>
+        </section>
+
+
+        <!-- Actividades registradas -->
+        <section id="activity-list">
+            <h2>Actividades registradas</h2>
+
+            <div id="activities-container">
+                <p>No hay actividades registradas.</p>
+            </div>
+        </section>
+
+
+        <!-- Optimización -->
+        <section id="optimization">
+            <h2>Optimización del horario</h2>
+
+            <button id="optimize-button" type="button">
+                Optimizar horario
+            </button>
+        </section>
+
+
+        <!-- Resultado -->
+        <section id="results">
+            <h2>Resultado</h2>
+
+            <div id="selected-activities">
+                <h3>Actividades seleccionadas</h3>
+
+                <p>
+                    Aún no se ha ejecutado la optimización.
+                </p>
+            </div>
+
+            <div id="discarded-activities">
+                <h3>Actividades descartadas</h3>
+
+                <p>
+                    Aún no se ha ejecutado la optimización.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- Estadísticas -->
+        <section id="statistics">
+            <h2>Estadísticas</h2>
+
+            <div>
+                <p>
+                    Actividades ingresadas:
+                    <span id="total-activities">0</span>
+                </p>
+
+                <p>
+                    Actividades seleccionadas:
+                    <span id="selected-count">0</span>
+                </p>
+
+                <p>
+                    Actividades descartadas:
+                    <span id="discarded-count">0</span>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Smart Schedule — Algoritmo Greedy</p>
+    </footer>
+
+</body>
+</html>
