@@ -164,5 +164,44 @@ function isEdgeInPath(node1, node2) {
   return false;
 }
 
-// Renderizar grafo por primera vez
+// --- CONTROLES INTERACTIVOS ---
+
+// Cargar nodos en los selectores desplegables
+const startSelect = document.getElementById('start-node');
+const endSelect = document.getElementById('end-node');
+
+for (let id in graph.nodes) {
+  startSelect.add(new Option(`${id} - ${graph.nodes[id].label}`, id));
+  endSelect.add(new Option(`${id} - ${graph.nodes[id].label}`, id));
+}
+endSelect.value = 'F'; // Valor por defecto
+
+// Evento: Calcular Ruta Óptima
+document.getElementById('btn-calculate').addEventListener('click', () => {
+  const start = startSelect.value;
+  const end = endSelect.value;
+
+  if (start === end) {
+    document.getElementById('result').innerHTML = '⚠️ El origen y el destino deben ser diferentes.';
+    return;
+  }
+
+  const result = graph.dijkstra(start, end);
+  currentPath = result.path;
+  drawGraph();
+
+  document.getElementById('result').innerHTML = `
+    <strong>Ruta Óptima:</strong> ${result.path.join(' ➔ ')}<br>
+    <strong>Distancia Total:</strong> ${result.distance} km
+  `;
+});
+
+// Evento: Restablecer
+document.getElementById('btn-reset').addEventListener('click', () => {
+  currentPath = [];
+  drawGraph();
+  document.getElementById('result').innerHTML = 'Selecciona origen y destino para calcular la mejor ruta.';
+});
+
+// Renderizado inicial
 drawGraph();
