@@ -23,7 +23,6 @@ class Graph {
     const previous = {};
     const unvisited = new Set();
 
-    // 1. Inicialización
     for (let node in this.nodes) {
       distances[node] = Infinity;
       previous[node] = null;
@@ -31,25 +30,20 @@ class Graph {
     }
     distances[startNode] = 0;
 
-    // 2. Bucle principal
     while (unvisited.size > 0) {
       let currentNode = null;
-      
-      // Obtener el nodo no visitado con menor distancia
       for (let node of unvisited) {
         if (currentNode === null || distances[node] < distances[currentNode]) {
           currentNode = node;
         }
       }
 
-      // Si la menor distancia es infinito, o llegamos al destino, paramos
       if (distances[currentNode] === Infinity || currentNode === endNode) {
         break;
       }
 
       unvisited.delete(currentNode);
 
-      // 3. Evaluar vecinos y relajar aristas
       for (let neighbor of this.adjacencyList[currentNode]) {
         if (unvisited.has(neighbor.node)) {
           let newDist = distances[currentNode] + neighbor.weight;
@@ -61,7 +55,6 @@ class Graph {
       }
     }
 
-    // 4. Reconstruir el camino óptimo desde el final hacia el inicio
     const path = [];
     let curr = endNode;
     while (curr !== null) {
@@ -97,3 +90,79 @@ graph.addEdge('C', 'E', 10);
 graph.addEdge('D', 'E', 2);
 graph.addEdge('D', 'F', 6);
 graph.addEdge('E', 'F', 3);
+
+// Contexto de Canvas para renderizado visual
+const canvas = document.getElementById('graphCanvas');
+const ctx = canvas.getContext('2d');
+let currentPath = [];
+
+// Función para dibujar el grafo completo
+function drawGraph() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // 1. Dibujar aristas (líneas de conexión)
+  const drawnEdges = new Set();
+  for (let node in graph.adjacencyList) {
+    const start = graph.nodes[node];
+    for (let edge of graph.adjacencyList[node]) {
+      const end = graph.nodes[edge.node];
+      const edgeId = [node, edge.node].sort().join('-');
+
+      if (!drawnEdges.has(edgeId)) {
+        drawnEdges.add(edgeId);
+
+        const isPathEdge = isEdgeInPath(node, edge.node);
+
+        ctx.beginPath();
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(end.x, end.y);
+        ctx.strokeStyle = isPathEdge ? '#e74c3c' : '#bdc3c7';
+        ctx.lineWidth = isPathEdge ? 5 : 2;
+        ctx.stroke();
+
+        // Mostrar texto de peso (distancia)
+        const midX = (start.x + end.x) / 2;
+        const midY = (start.y + end.y) / 2;
+        ctx.fillStyle = '#2c3e50';
+        ctx.font = '12px Arial';
+        ctx.fillText(`${edge.weight} km`, midX + 5, midY - 5);
+      }
+    }
+  }
+
+  // 2. Dibujar nodos (círculos)
+  for (let id in graph.nodes) {
+    const node = graph.nodes[id];
+    const isInPath = currentPath.includes(id);
+
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+    ctx.fillStyle = isInPath ? '#e74c3c' : '#3498db';
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(id, node.x, node.y);
+  }
+}
+
+// Función auxiliar para verificar si una conexión está en la ruta óptima
+function isEdgeInPath(node1, node2) {
+  for (let i = 0; i < currentPath.length - 1; i++) {
+    if (
+      (currentPath[i] === node1 && currentPath[i + 1] === node2) ||
+      (currentPath[i] === node2 && currentPath[i + 1] === node1)
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Renderizar grafo por primera vez
+drawGraph();
