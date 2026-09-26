@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoRoute - Optimización de Rutas con Grafos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>EcoRoute Logistics 🚚</h1>
+    <p>Optimización de rutas de entrega usando el Algoritmo de Dijkstra</p>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <h2>Panel de Control</h2>
+      <div class="input-group">
+        <label for="start-node">Punto de Origen:</label>
+        <select id="start-node"></select>
+      </div>
+
+      <div class="input-group">
+        <label for="end-node">Punto de Destino:</label>
+        <select id="end-node"></select>
+      </div>
+
+      <button id="btn-calculate">Calcular Ruta Óptima</button>
+      <button id="btn-reset" class="secondary">Restablecer</button>
+
+      <div id="result" class="result-box">
+        Selecciona origen y destino para calcular la mejor ruta.
+      </div>
+    </section>
+
+    <section class="canvas-container">
+      <canvas id="graphCanvas" width="700" height="500"></canvas>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
