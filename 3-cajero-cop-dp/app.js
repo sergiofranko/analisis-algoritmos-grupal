@@ -18,3 +18,54 @@ const DENOMINATIONS_COP = [
 
 // Factor de escala es 50, debido a que es la menor denominación en Colombia
 const SCALE = 50;
+
+function solveCoinChangeDP(rawAmount) {
+    const targetNormalized = rawAmount / SCALE;
+
+    const scaledDenoms = DENOMINATIONS_COP.map(d => ({
+        ...d,
+        scaledValue: d.value / SCALE
+    }));
+
+    // 1. Inicialización de arreglo DP y punteros para reconstrucción
+    const INF = Infinity;
+    const dp = new Array(targetNormalized + 1).fill(INF);
+    const parent = new Array(targetNormalized + 1).fill(-1);
+
+    // Caso Base
+    dp[0] = 0;
+
+    // 2. Relación de Recurrencia: DP[i] = 1 + min(DP[i - c'])
+    for (let i = 1; i <= targetNormalized; i++) {
+        for (let d of scaledDenoms) {
+            if (d.scaledValue <= i) {
+                if (dp[i - d.scaledValue] + 1 < dp[i]) {
+                    dp[i] = dp[i - d.scaledValue] + 1;
+                    parent[i] = d.value; // Almacenamos la denominación real elegida
+                }
+            }
+        }
+    }
+
+    if (dp[targetNormalized] === INF) {
+        return { possible: false };
+    }
+
+    // 3. Reconstrucción del conjunto óptimo (Backtracking)
+    const counts = {};
+    let current = targetNormalized;
+
+    while (current > 0) {
+        const coinVal = parent[current];
+        counts[coinVal] = (counts[coinVal] || 0) + 1;
+        current -= (coinVal / SCALE);
+    }
+
+    return {
+        possible: true,
+        totalPieces: dp[targetNormalized],
+        counts: counts,
+        dpTable: dp,
+        parentTable: parent
+    };
+}
