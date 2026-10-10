@@ -109,6 +109,7 @@ function renderResults(totalAmount, totalPieces, counts) {
 /**
  * Controller function invoked by the UI button.
  */
+
 function calculateChange() {
     const amountInput = document.getElementById('amount');
     const rawAmount = parseInt(amountInput.value);
@@ -117,5 +118,38 @@ function calculateChange() {
 
     if (result.possible) {
         renderResults(rawAmount, result.totalPieces, result.counts);
+        
+        // Renderizar la tabla de DP mostrando los primeros 50 estados (para no bloquear el navegador)
+        renderDPTable(result.dpTable, result.parentTable, 50);
+    }
+}
+
+// Ejecutar el cálculo automático la primera vez que carga la página
+window.onload = calculateChange;
+
+function renderDPTable(dp, parent, limit) {
+    const tbody = document.getElementById('dp-table-body');
+    tbody.innerHTML = '';
+
+    // Solo mostramos hasta el 'limit' para no saturar el DOM visualmente
+    for (let i = 0; i <= limit && i < dp.length; i++) {
+        const tr = document.createElement('tr');
+        const realCOP = i * SCALE;
+        const lastCoinUsed = parent[i] !== -1 ? `$${parent[i].toLocaleString('es-CO')}` : '-';
+
+        tr.innerHTML = `
+            <td>${i}</td>
+            <td>$${realCOP.toLocaleString('es-CO')} COP</td>
+            <td>${dp[i] === Infinity ? '∞' : dp[i]}</td>
+            <td>${lastCoinUsed}</td>
+        `;
+        tbody.appendChild(tr);
+    }
+
+    // Si el arreglo DP es más grande que el límite, añadimos una fila de aviso
+    if (dp.length - 1 > limit) {
+        const extraRow = document.createElement('tr');
+        extraRow.innerHTML = `<td colspan="4" class="placeholder-text">... Mostrando los primeros ${limit} de ${dp.length - 1} subproblemas calculados ...</td>`;
+        tbody.appendChild(extraRow);
     }
 }
