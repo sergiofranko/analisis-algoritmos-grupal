@@ -69,3 +69,53 @@ function solveCoinChangeDP(rawAmount) {
         parentTable: parent
     };
 }
+
+/**
+ * Dibuja en el DOM las tarjetas visuales de los billetes y monedas seleccionados,
+ * así como los indicadores de totales.
+ */
+function renderResults(totalAmount, totalPieces, counts) {
+    document.getElementById('res-total').innerText = `$${totalAmount.toLocaleString('es-CO')} COP`;
+    document.getElementById('res-count').innerText = totalPieces;
+
+    const container = document.getElementById('currency-container');
+    container.innerHTML = '';
+
+    DENOMINATIONS_COP.forEach(denom => {
+        const qty = counts[denom.value];
+        if (qty) {
+            if (denom.type === 'bill') {
+                const billEl = document.createElement('div');
+                billEl.className = `bill bill-${denom.value}`;
+                billEl.innerHTML = `
+                    <div class="count-badge">${qty}x</div>
+                    <div>${denom.name}</div>
+                    <small style="font-size:0.65rem; opacity:0.8">${denom.label}</small>
+                `;
+                container.appendChild(billEl);
+            } else {
+                const coinEl = document.createElement('div');
+                coinEl.className = 'coin';
+                coinEl.innerHTML = `
+                    <div class="count-badge">${qty}x</div>
+                    <span>${denom.name}</span>
+                `;
+                container.appendChild(coinEl);
+            }
+        }
+    });
+}
+
+/**
+ * Controller function invoked by the UI button.
+ */
+function calculateChange() {
+    const amountInput = document.getElementById('amount');
+    const rawAmount = parseInt(amountInput.value);
+
+    const result = solveCoinChangeDP(rawAmount);
+
+    if (result.possible) {
+        renderResults(rawAmount, result.totalPieces, result.counts);
+    }
+}
