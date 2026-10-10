@@ -112,15 +112,34 @@ function renderResults(totalAmount, totalPieces, counts) {
 
 function calculateChange() {
     const amountInput = document.getElementById('amount');
-    const rawAmount = parseInt(amountInput.value);
+    const rawAmount = parseInt(amountInput.value, 10);
 
+    // Validación 1: Campo vacío o no numérico
+    if (isNaN(rawAmount)) {
+        alert("Por favor ingrese un monto numérico válido.");
+        return;
+    }
+
+    // Validación 2: Valores negativos o iguales a cero
+    if (rawAmount <= 0) {
+        alert("El monto debe ser un valor positivo mayor a \$0 COP.");
+        return;
+    }
+
+    // Validación 3: Restricción de múltiplo del factor de escala (\$50 COP)
+    if (rawAmount % SCALE !== 0) {
+        alert(`El monto debe ser múltiplo de $${SCALE} COP (ejemplo: $187.500), ya que $50 es la moneda de menor denominación en Colombia.`);
+        return;
+    }
+
+    // Ejecución del algoritmo de Programación Dinámica
     const result = solveCoinChangeDP(rawAmount);
 
     if (result.possible) {
         renderResults(rawAmount, result.totalPieces, result.counts);
-        
-        // Renderizar la tabla de DP mostrando los primeros 50 estados (para no bloquear el navegador)
         renderDPTable(result.dpTable, result.parentTable, 50);
+    } else {
+        alert("No es posible calcular un desglose exacto para el monto ingresado.");
     }
 }
 
