@@ -1,0 +1,165 @@
+:root {
+    --bg-color: #f4f6f9;
+    --card-bg: #ffffff;
+    --primary: #002855;
+    --accent: #ffcd00;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    background-color: var(--primary);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border-bottom: 5px solid var(--accent);
+}
+
+header h1 {
+    margin: 0 0 8px 0;
+    font-size: 1.8rem;
+}
+
+header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: var(--primary);
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.input-wrapper span {
+    background: #e9ecef;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0 5px 5px 0;
+}
+
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #001f42;
+}
+
+.metrics-grid {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.metric-box {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.metric-title {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.metric-value {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.placeholder-text {
+    color: #888;
+    font-style: italic;
+}
+
+.table-wrapper {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f1f3f5;
+}
