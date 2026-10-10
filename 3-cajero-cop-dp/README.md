@@ -21,7 +21,7 @@ Para prevenir el consumo excesivo de memoria en la matriz $DP$, escalamos el val
 
 $$V' = \left\lfloor \frac{V}{50} \right\rfloor$$
 
-$$D' = \left\{ \frac{c}{50} \;\middle\vert{}\; c \in D \right\} = \{1, 2, 4, 10, 20, 40, 100, 200, 400, 1000, 2000\}$$
+$$D' = \left\lbrace \frac{c}{50} \mid c \in D \right\rbrace = \lbrace 1, 2, 4, 10, 20, 40, 100, 200, 400, 1000, 2000 \rbrace$$
 
 Esto reduce la memoria utilizada y las iteraciones del algoritmo en un **98%**.
 
