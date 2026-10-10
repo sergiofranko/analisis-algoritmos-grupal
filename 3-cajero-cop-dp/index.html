@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CajeroCOP - Dispensador Inteligente de Moneda Colombiana</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🇨🇴 CajeroCOP — Programación Dinámica</h1>
+            <p>Optimizador de desglose de efectivo con billetes y monedas corrientes de Colombia</p>
+        </header>
+
+        <main>
+            <!-- Sección de Entrada de Datos -->
+            <section class="card input-section">
+                <h2>1. Ingrese el Valor a Dispensar</h2>
+                <div class="form-group">
+                    <label for="amount">Monto en Pesos Colombianos (COP):</label>
+                    <div class="input-wrapper">
+                        <span>$</span>
+                        <input type="number" id="amount" placeholder="Ej: 187500" step="50" min="50" value="187500">
+                    </div>
+                    <small>El monto debe ser múltiplo de $50 COP.</small>
+                </div>
+                <button id="btn-calc">Calcular Desglose Óptimo</button>
+            </section>
+
+            <!-- Sección de Resultados (Billetes y Monedas) -->
+            <section class="card output-section">
+                <h2>2. Resultado del Desglose Óptimo</h2>
+                <div id="summary-metrics" class="metrics-grid">
+                    <div class="metric-box">
+                        <span class="metric-title">Total Entregado</span>
+                        <span class="metric-value" id="res-total">$0</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-title">Billetes / Monedas Totales</span>
+                        <span class="metric-value" id="res-count">0</span>
+                    </div>
+                </div>
+
+                <h3>Efectivo a Entregar:</h3>
+                <div id="currency-container" class="currency-grid">
+                    <p class="placeholder-text">Ingrese un monto y presione calcular para ver los billetes.</p>
+                </div>
+            </section>
+
+            <!-- Sección de Inspección de Estados DP -->
+            <section class="card dp-section">
+                <h2>3. Inspección de Estados de Programación Dinámica</h2>
+                <p>Muestra de los subproblemas calculados en el arreglo <code>DP[i]</code> (versión reducida por factor 50):</p>
+                <div class="table-wrapper">
+                    <table id="dp-table">
+                        <thead>
+                            <tr>
+                                <th>Estado ($i \times 50$)</th>
+                                <th>Monto Real ($COP$)</th>
+                                <th>Mín. Piezas ($DP[i]$)</th>
+                                <th>Última Denominación</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dp-table-body">
+                            <tr><td colspan="4">Sin datos generados.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
