@@ -163,3 +163,112 @@ th, td {
 th {
     background-color: #f1f3f5;
 }
+
+/* ==========================================================================
+   Estilos de Billetes y Monedas de Colombia
+   ========================================================================== */
+
+.currency-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Tarjeta base del Billete */
+.bill {
+    width: 160px;
+    height: 85px;
+    border-radius: 6px;
+    color: white;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    font-weight: bold;
+}
+
+/* Badge con la cantidad de billetes repetidos */
+.bill .count-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #d90429;
+    color: white;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores representativos de la familia de billetes de Colombia */
+.bill-100000 {
+    background: linear-gradient(135deg, #2b7a4b, #1b4d2e);
+    border: 2px solid #52b788;
+}
+
+.bill-50000 {
+    background: linear-gradient(135deg, #6a388a, #431f5c);
+    border: 2px solid #9d4edd;
+}
+
+.bill-20000 {
+    background: linear-gradient(135deg, #d96b27, #9e4309);
+    border: 2px solid #ff9e00;
+}
+
+.bill-10000 {
+    background: linear-gradient(135deg, #c92a2a, #861c1c);
+    border: 2px solid #ff6b6b;
+}
+
+.bill-5000 {
+    background: linear-gradient(135deg, #7f5539, #4a2c11);
+    border: 2px solid #b08968;
+}
+
+.bill-2000 {
+    background: linear-gradient(135deg, #1d3557, #0d1b2a);
+    border: 2px solid #457b9d;
+}
+
+/* Tarjeta base de la Moneda */
+.coin {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4af37, #aa820a);
+    color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    border: 3px solid #f3e5ab;
+    position: relative;
+}
+
+.coin .count-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #d90429;
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    border: 1px solid white;
+}
