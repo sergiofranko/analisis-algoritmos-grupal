@@ -1,22 +1,22 @@
 /**
- * Divisas oficiales, en pesos, de Colombia 
- * Ordenadas de mayor a menor para estructurar la solución.
+ * Denominaciones oficiales vigentes en Colombia (en Pesos COP)
+ * Apuntando a las imágenes locales en la carpeta "assets/"
  */
 const DENOMINATIONS_COP = [
-    { value: 100000, type: 'bill', name: '$100.000', label: 'C. Lleras Restrepo' },
-    { value: 50000,  type: 'bill', name: '$50.000',  label: 'G. García Márquez' },
-    { value: 20000,  type: 'bill', name: '$20.000',  label: 'A. López Michelsen' },
-    { value: 10000,  type: 'bill', name: '$10.000',  label: 'V. Gutiérrez' },
-    { value: 5000,   type: 'bill', name: '$5.000',   label: 'J. A. Silva' },
-    { value: 2000,   type: 'bill', name: '$2.000',   label: 'D. Arango' },
-    { value: 1000,   type: 'coin', name: '$1.000',   label: 'Moneda' },
-    { value: 500,    type: 'coin', name: '$500',     label: 'Moneda' },
-    { value: 200,    type: 'coin', name: '$200',     label: 'Moneda' },
-    { value: 100,    type: 'coin', name: '$100',     label: 'Moneda' },
-    { value: 50,     type: 'coin', name: '$50',      label: 'Moneda' }
+    { value: 100000, type: 'bill', name: '$100.000', image: 'assets/100000.jpg' },
+    { value: 50000,  type: 'bill', name: '$50.000',  image: 'assets/50000.jpg' },
+    { value: 20000,  type: 'bill', name: '$20.000',  image: 'assets/20000.jpg' },
+    { value: 10000,  type: 'bill', name: '$10.000',  image: 'assets/10000.jpg' },
+    { value: 5000,   type: 'bill', name: '$5.000',   image: 'assets/5000.jpg' },
+    { value: 2000,   type: 'bill', name: '$2.000',   image: 'assets/2000.jpg' },
+    { value: 1000,   type: 'coin', name: '$1.000',   image: 'assets/1000.jpg' },
+    { value: 500,    type: 'coin', name: '$500',     image: 'assets/500.jpg' },
+    { value: 200,    type: 'coin', name: '$200',     image: 'assets/200.jpg' },
+    { value: 100,    type: 'coin', name: '$100',     image: 'assets/100.jpg' },
+    { value: 50,     type: 'coin', name: '$50',      image: 'assets/50.jpg' }
 ];
 
-// Factor de escala es 50, debido a que es la menor denominación en Colombia
+// Factor de escala (MCD = $50 COP) para optimizar el tamaño de la matriz DP
 const SCALE = 50;
 
 function solveCoinChangeDP(rawAmount) {
@@ -71,8 +71,7 @@ function solveCoinChangeDP(rawAmount) {
 }
 
 /**
- * Dibuja en el DOM las tarjetas visuales de los billetes y monedas seleccionados,
- * así como los indicadores de totales.
+ * Renderizado de Billetes y Monedas utilizando imágenes de fondo
  */
 function renderResults(totalAmount, totalPieces, counts) {
     document.getElementById('res-total').innerText = `$${totalAmount.toLocaleString('es-CO')} COP`;
@@ -84,24 +83,17 @@ function renderResults(totalAmount, totalPieces, counts) {
     DENOMINATIONS_COP.forEach(denom => {
         const qty = counts[denom.value];
         if (qty) {
-            if (denom.type === 'bill') {
-                const billEl = document.createElement('div');
-                billEl.className = `bill bill-${denom.value}`;
-                billEl.innerHTML = `
-                    <div class="count-badge">${qty}x</div>
-                    <div>${denom.name}</div>
-                    <small style="font-size:0.65rem; opacity:0.8">${denom.label}</small>
-                `;
-                container.appendChild(billEl);
-            } else {
-                const coinEl = document.createElement('div');
-                coinEl.className = 'coin';
-                coinEl.innerHTML = `
-                    <div class="count-badge">${qty}x</div>
-                    <span>${denom.name}</span>
-                `;
-                container.appendChild(coinEl);
-            }
+            const el = document.createElement('div');
+            // Asigna la clase base según el tipo ('bill' o 'coin')
+            el.className = denom.type === 'bill' ? 'bill' : 'coin';
+            
+            // Asigna la imagen de fondo desde el atributo image del objeto
+            el.style.backgroundImage = `url('${denom.image}')`;
+            
+            // Inyecta el badge con la cantidad entregada
+            el.innerHTML = `<div class="count-badge">${qty}x</div>`;
+            
+            container.appendChild(el);
         }
     });
 }
@@ -109,7 +101,6 @@ function renderResults(totalAmount, totalPieces, counts) {
 /**
  * Controller function invoked by the UI button.
  */
-
 function calculateChange() {
     const amountInput = document.getElementById('amount');
     const rawAmount = parseInt(amountInput.value, 10);
