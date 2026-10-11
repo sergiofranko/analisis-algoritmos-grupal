@@ -50,6 +50,7 @@ Se utiliza un arreglo auxiliar `parent[i]` que registra la denominación en peso
 
 ```text
 cajerocop-dp/
+├── assets/        # Carpeta que contiene las imágenes de los billetes y monedas colombianas en formato .jpg
 ├── index.html     # Maquetación de la interfaz web y contenedores
 ├── styles.css     # Estilos CSS, grilla y componentes visuales de billetes
 ├── app.js         # Algoritmo DP en JS, validaciones y renderizado del DOM
@@ -64,32 +65,24 @@ La aplicación no requiere instalación de dependencias ni compilación.
 
 1. Clonar este repositorio:
    ```bash
-   git clone <URL_DE_TU_REPOSITORIO>
-   cd cajerocop-dp
+   git clone https://github.com/sergiofranko/analisis-algoritmos-grupal/tree/main/3-cajero-cop-dp
+   cd 3-cajero-cop-dp
    ```
 2. Abrir el archivo `index.html` en cualquier navegador web moderno (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari).
 3. Ingresar un monto múltiplo de $50 COP y presionar el botón **"Calcular Desglose Óptimo"**.
 
 ---
 
-## 5. Historial de Commits
+## 5. Desarrolladores
 
-El proyecto fue desarrollado de forma incremental a través de 9 commits estructurados:
+El proyecto fue desarrollado por:
 
-1. `chore: inicializar estructura del proyecto y maqueta HTML5 base`
-2. `style: maquetacion base, variables CSS, rejilla y contenedores principales`
-3. `feat: definir array de denominaciones oficiales de billetes y monedas colombianas`
-4. `feat: implementar matriz DP bottom-up y algoritmo de backtracking para el cambio minimo`
-5. `style: crear componentes visuales CSS para billetes (100k-2k) y monedas corrientes`
-6. `feat: conectar algoritmo DP con el DOM para mostrar los billetes a entregar`
-7. `feat: agregar visualizador en tabla HTML de los subproblemas calculados en DP[i]`
-8. `fix: agregar validacion de montos positivos y restriccion a multiplos de \$50 COP`
-9. `docs: redactar README.md con fundamentacion teorica y enlace al video`
-
----
+- Sergio Esteban Franco Agudelo
+- Maria Alejandra Rúa Monsalve
+- Sebastián Espinosa Hernández
 
 ## 6. Video de Sustentación
 
 Enlace a la sustentación en video del proyecto (explicación de la recurrencia, código y prueba funcional):
 
-👉 **[Ver Video de Sustentación en YouTube / Loom](https://youtube.com/)**
+👉 **[Ver Video de Sustentación en YouTube](https://youtu.be/yaq1FWix4wg)**
