@@ -37,3 +37,20 @@ Dado un arreglo de enteros no negativos, hay que permutarlos y **concatenarlos**
 ## Evidencias
 
 ![Accepted — Largest-Number](evidencias/largest-number-accepted.png)
+
+---
+## Ejercicio 3 · [743. Network Delay Time](https://leetcode.com/problems/network-delay-time/)
+**Autor:** Sebastian Espinosa (`sebasespinosa18`)  
+**Dificultad:** Medium  
+**Familia:** grafos (Dijkstra)
+**Idea:** Pasar los números a cadena y ordenarlos con un comparador por concatenación donde `a` va antes que `b` si `a + b > b + a`. Al final unir todo y devolver `"0"` si empieza con `"0"` (como en `[0, 0]`).
+**Complejidad:** Tiempo $O(n \log n)$ comparaciones (cada una lineal en la longitud de las cadenas) y espacio $O(n)$ para las cadenas y la salida.
+
+## Enunciado
+Hay `n` nodos, numerados `1 … n`, y una lista `times` de arcos dirigidos `[u, v, w]`: la señal tarda `w` en ir de `u` a `v`. Desde el nodo `k` se envía una señal. Hay que devolver el tiempo en que **todos** los nodos la han recibido. Si alguno no es alcanzable, devolver `-1`.
+
+## Evidencias
+
+![Accepted — Largest-Number](evidencias/network-delay-time-accepted.png)
+
+---
