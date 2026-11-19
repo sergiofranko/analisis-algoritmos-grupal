@@ -1,10 +1,11 @@
 # Tabla de autoría
-```markdown
+
 | Integrante | Usuario de git | Ejercicios |
-| Sebastian Espinosa Hernández | sebasespinosa18 | 215, 743 |
-| Sergio Esteban Franco Agudelo | sergiofranko | … |
-| Maria Alejandra Rua Monsalve | Alejandra-Rua | … |
-```
+| --- | --- | --- |
+| Sebastian Espinosa Hernández | sebasespinosa18 | 215, 179, 743 |
+| Sergio Esteban Franco Agudelo | sergiofranko | 134, 79 |
+| Maria Alejandra Rua Monsalve | Alejandra-Rua | 1584, 72, 300 |
+
 
 ## Ejercicio 1 · [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 
@@ -20,3 +21,19 @@ Dado `nums` y un entero `k`, devolver el **k-ésimo mayor**. Es el mayor del arr
 ## Evidencias
 
 ![Accepted — Kth Largest](evidencias/kth-largest-accepted.png)
+
+---
+
+## Ejercicio 2 · [179. Largest Number](https://leetcode.com/problems/largest-number/)
+**Autor:** Sebastian Espinosa (`sebasespinosa18`)  
+**Dificultad:** Medium  
+**Familia:** ordenamiento
+**Idea:** Pasar los números a cadena y ordenarlos con un comparador por concatenación donde `a` va antes que `b` si `a + b > b + a`. Al final unir todo y devolver `"0"` si empieza con `"0"` (como en `[0, 0]`).
+**Complejidad:** Tiempo $O(n \log n)$ comparaciones (cada una lineal en la longitud de las cadenas) y espacio $O(n)$ para las cadenas y la salida.
+
+## Enunciado
+Dado un arreglo de enteros no negativos, hay que permutarlos y **concatenarlos** para formar el **mayor número** posible. La respuesta es ese número como cadena. `[10, 2]` da `"210"`, no `"102"`.
+
+## Evidencias
+
+![Accepted — Largest-Number](evidencias/largest-number-accepted.png)
