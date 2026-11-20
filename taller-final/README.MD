@@ -68,10 +68,13 @@ Dado un arreglo `points`, donde `points[i] = [xi, yi]` representa las coordenada
 
 ## Evidencias
 
+### Accepted
 ![Accepted — Min Cost to Connect All Points](evidencias/min-cost-to-connect-all-point-accepted.png)
 
+### Runtime
 ![Runtime — Min Cost to Connect All Points](evidencias/min-cost-to-connect-all-point-runtime.png)
 
+### Memory
 ![Memory — Min Cost to Connect All Points](evidencias/min-cost-to-connect-all-point-memory.png)
 
 ---
@@ -89,10 +92,13 @@ Dadas dos cadenas de texto `word1` y `word2`, se debe calcular el **número mín
 
 ## Evidencias
 
+### Accepted
 ![Accepted — Edit Distance](evidencias/edit-distance-accepted.png)
 
+### Runtime
 ![Runtime — Edit Distance](evidencias/edit-distance-runtime.png)
 
+### Memory
 ![Memory — Edit Distance](evidencias/edit-distance-memory.png)
 
 ---
@@ -110,10 +116,13 @@ Dado un arreglo de enteros `nums`, se debe encontrar la **longitud de la subsecu
 
 ## Evidencias
 
+### Accepted
 ![Accepted — Longest Increasing Subsequence](evidencias/longest-increasing-subsequence-accepted.png)
 
+### Runtime
 ![Runtime — Longest Increasing Subsequence](evidencias/longest-increasing-subsequence-runtime.png)
 
+### Memory
 ![Memory — Longest Increasing Subsequence](evidencias/longest-increasing-subsequence-memory.png)
 
 ---
