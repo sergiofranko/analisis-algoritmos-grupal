@@ -127,3 +127,44 @@ Dado un arreglo de enteros `nums`, se debe encontrar la **longitud de la subsecu
 
 ---
 
+## Ejercicio 7 · [134. Gas Station](https://leetcode.com/problems/gas-station/)
+
+**Autor:** Sergio Esteban Franco Agudelo (`sergiofranko`)  
+**Dificultad:** Medium  
+**Familia:** greedy  
+**Idea:** Utilizar un enfoque *greedy* de una sola pasada manteniendo el balance neto de combustible (`gas[i] - cost[i]`), un acumulado global (`total_tank`), un tanque parcial (`current_tank`) y un índice candidato de inicio (`start = 0`). Al recorrer cada estación, se suma el balance neto a ambos tanques; si `current_tank` cae por debajo de `0`, ninguna estación entre `start` y la posición actual `i` puede ser el punto de partida válido, por lo que se reinicia `current_tank` a `0` y se actualiza `start = i + 1`. Finalmente, si `total_tank` es mayor o igual a `0`, se devuelve `start`; de lo contrario, se devuelve `-1`.  
+**Complejidad:** Tiempo $O(n)$ y espacio extra $O(1)$, donde $n$ es la cantidad de estaciones de gasolina.
+
+## Enunciado
+Hay `n` estaciones en un circuito. En la `i` hay `gas[i]` unidades y viajar de `i` a la siguiente cuesta `cost[i]`. El tanque empieza vacío. Hay que devolver el **índice** desde el que se puede dar **una** vuelta completa. Si no existe, `-1`. Si existe, es único.
+El criterio local no es «la estación con más gas». Es un acumulado que no se retracta: si el tanque se vacía al intentar salir desde un tramo, **ninguna** estación de ese tramo sirve de inicio, y el siguiente candidato es la estación de justo después.
+
+## Evidencias
+
+### Accepted + Memory
+![Accepted — Longest Increasing Subsequence](evidencias/gas-station-accepted-memory.png)
+
+### Accepted + Runtime
+![Runtime — Longest Increasing Subsequence](evidencias/gas-station-accepted-runtime.png)
+
+---
+
+## Ejercicio 8 · [79. Word Search](https://leetcode.com/problems/word-search/)
+
+**Autor:** Sergio Esteban Franco Agudelo (`sergiofranko`)  
+**Dificultad:** Medium  
+**Familia:** backtracking  
+**Idea:** Utilizar búsqueda en profundidad (*DFS*) con *backtracking* recorriendo cada celda de la matriz `board` como posible punto de partida cuando coincide con la primera letra de `word`. En cada paso recursivo, se valida que la celda esté dentro de los límites y coincida con el carácter actual, se marca temporalmente como visitada modificando su valor en el lugar (por ejemplo, a `'#'`) para evitar reutilizarla, y se exploran las cuatro direcciones adyacentes (arriba, abajo, izquierda y derecha). Si ningún camino completa la palabra, se restaura el carácter original al retroceder; si se alcanzan todos los caracteres de `word`, se devuelve `True`.  
+**Complejidad:** Tiempo $O(m \cdot n \cdot 3^L)$ y espacio extra $O(L)$, donde $m$ y $n$ son las dimensiones de la matriz y $L$ es la longitud de `word` (correspondiente a la profundidad máxima de la pila de recursión).
+
+## Enunciado
+Hay una grilla de letras y una palabra `word`. Decidir si la palabra aparece en celdas **adyacentes** en horizontal o vertical (no en diagonal). La misma celda no se puede usar dos veces en la misma palabra.
+En Combination Sum (taller de octubre) se elegía un candidato, se bajaba el resto y se **deshacía** la elección. Aquí el candidato es una celda vecina. Greedy de «seguir la primera letra que coincida» se mete en un callejón y no prueba el otro vecino. Hay que marcar, seguir, y al volver **quitar la marca**.
+
+## Evidencias
+
+### Accepted + Memory
+![Accepted — Longest Increasing Subsequence](evidencias/word-search-accepted-memory.png)
+
+### Accepted + Runtime
+![Runtime — Longest Increasing Subsequence](evidencias/word-search-accepted-runtime.png)
